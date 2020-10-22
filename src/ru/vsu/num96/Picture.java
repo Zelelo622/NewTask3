@@ -1,11 +1,11 @@
 package ru.vsu.num96;
 
 public class Picture {
-    private Circle circle;
-    private Line line;
-    private Parabola parabola1;
-    private Parabola parabola2;
-    private Parabola parabola3;
+    private final Circle circle;
+    private final Line line;
+    private final Parabola parabola1;
+    private final Parabola parabola2;
+    private final Parabola parabola3;
 
     Picture(Circle circle, Line line, Parabola parabola1, Parabola parabola2, Parabola parabola3) {
         this.circle = circle;
@@ -16,7 +16,6 @@ public class Picture {
     }
 
     SimpleColor getColor(double x, double y) {
-
         //---------------------------------ОКРУЖНОСТЬ-----------------------------
         //верхний (маленький)
         if (circle.isPointInside(x, y) && line.isPointInside(x, y) && parabola1.isPointInside(x, y) &&

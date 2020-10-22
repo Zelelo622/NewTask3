@@ -13,20 +13,32 @@ public class Main {
                 new Parabola(1.0 / 8, -3.0 / 4, 25.0 / 8)
         );
 
-        test(picture);
+        testPoints(picture);
 
         double x = readDouble("x --> ");
         double y = readDouble("y --> ");
 
-        printColorForPoint(x, y, picture);
+        SimpleColor color = picture.getColor(x, y);
+
+        printColorForPoint(x, y, color);
+    }
+    
+    static void testPoints(Picture picture) {
+        double[][] point = {{-1, 3, 5, -8, 0, 5}, {2, 3, 5, 6, -6, -5}};
+        SimpleColor[] correctResults = {SimpleColor.GREEN, SimpleColor.YELLOW, SimpleColor.ORANGE, SimpleColor.WHITE,
+                SimpleColor.GRAY, SimpleColor.BLUE};
+
+        for (int i = 0; i < point[0].length; i++) {
+            SimpleColor color = picture.getColor(point[0][i], point[1][i]);
+            printColorForPoint(point[0][i], point[1][i], color);
+            SimpleColor correctColor = correctResults[i];
+
+            System.out.println(checkResult(color, correctColor));
+        }
     }
 
-    static void test(Picture picture) {
-        double[][] point = {{-1, 3, 5, -8, 0, 5}, {2, 3, 5, 6, -6, -5}};
-
-        for (int i = 0; i < 6; i++) {
-            printColorForPoint(point[0][i], point[1][i], picture);
-        }
+    static boolean checkResult(SimpleColor color, SimpleColor correctColor) {
+        return color == correctColor;
     }
 
     static double readDouble(String name) {
@@ -35,7 +47,7 @@ public class Main {
         return scanner.nextDouble();
     }
 
-    static void printColorForPoint(double x, double y, Picture picture) {
-        System.out.printf("x = %1$.1f; y = %2$.1f is point in " + picture.getColor(x, y) + "\n", x, y);
+    static void printColorForPoint(double x, double y, SimpleColor color) {
+        System.out.printf("x = %1$.1f; y = %2$.1f is point in "+ color +"\n", x, y);
     }
 }
