@@ -18,27 +18,29 @@ public class Main {
         double x = readDouble("x --> ");
         double y = readDouble("y --> ");
 
-        SimpleColor color = picture.getColor(x, y);
+        Point point = new Point(x, y);
+        SimpleColor color = picture.getColor(point);
 
-        printColorForPoint(x, y, color);
+        printColorForPoint(point, color);
     }
-    
+
     static void testPoints(Picture picture) {
-        double[][] point = {{-1, 3, 5, -8, 0, 5}, {2, 3, 5, 6, -6, -5}};
+        Point[] point = {new Point(-1, 2), new Point(3, 3), new Point(5, 5),
+                new Point(-8, 6), new Point(0, -6), new Point(5, -5)};
         SimpleColor[] correctResults = {SimpleColor.GREEN, SimpleColor.YELLOW, SimpleColor.ORANGE, SimpleColor.WHITE,
                 SimpleColor.GRAY, SimpleColor.BLUE};
 
-        for (int i = 0; i < point[0].length; i++) {
-            SimpleColor color = picture.getColor(point[0][i], point[1][i]);
-            printColorForPoint(point[0][i], point[1][i], color);
+        for (int i = 0; i < point.length; i++) {
+            SimpleColor color = picture.getColor(point[i]);
             SimpleColor correctColor = correctResults[i];
 
-            System.out.println(checkResult(color, correctColor));
+            if (color == correctColor) {
+                printTest(color, correctColor, point[i], "CORRECT");
+            } else {
+                printTest(color, correctColor, point[i], "INCORRECT");
+                System.exit(0);
+            }
         }
-    }
-
-    static boolean checkResult(SimpleColor color, SimpleColor correctColor) {
-        return color == correctColor;
     }
 
     static double readDouble(String name) {
@@ -47,7 +49,13 @@ public class Main {
         return scanner.nextDouble();
     }
 
-    static void printColorForPoint(double x, double y, SimpleColor color) {
-        System.out.printf("x = %1$.1f; y = %2$.1f is point in "+ color +"\n", x, y);
+    static void printTest(SimpleColor color, SimpleColor correctColor, Point point, String result) {
+        System.out.printf("x = %1$.1f; y = %2$.1f is point in " + color + "\nCorrect color --> " + correctColor + "" +
+                "\nResult: " + result + "\n", point.x, point.y);
+        System.out.println("-------------------");
+    }
+
+    static void printColorForPoint(Point point, SimpleColor color) {
+        System.out.printf("x = %1$.1f; y = %2$.1f is point in " + color + "\n", point.x, point.y);
     }
 }

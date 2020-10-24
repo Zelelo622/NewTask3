@@ -15,7 +15,10 @@ public class Picture {
         this.parabola3 = parabola3;
     }
 
-    SimpleColor getColor(double x, double y) {
+    SimpleColor getColor(Point point) {
+        double x = point.x;
+        double y = point.y;
+
         if (circle.isPointInside(x, y) && line.isPointInside(x, y) && parabola1.isPointInside(x, y) &&
                 parabola2.isPointInside(x, y) && parabola3.isPointInside(x, y)) {
             return SimpleColor.GRAY;
