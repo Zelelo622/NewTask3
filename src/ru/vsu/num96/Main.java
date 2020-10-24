@@ -24,7 +24,7 @@ public class Main {
         printColorForPoint(point, color);
     }
 
-    static void testPoints(Picture picture) {
+    private static void testPoints(Picture picture) {
         Point[] point = {new Point(-1, 2), new Point(3, 3), new Point(5, 5),
                 new Point(-8, 6), new Point(0, -6), new Point(5, -5)};
         SimpleColor[] correctResults = {SimpleColor.GREEN, SimpleColor.YELLOW, SimpleColor.ORANGE, SimpleColor.WHITE,
@@ -34,28 +34,32 @@ public class Main {
             SimpleColor color = picture.getColor(point[i]);
             SimpleColor correctColor = correctResults[i];
 
-            if (color == correctColor) {
+            if (checkResult(color, correctColor)) {
                 printTest(color, correctColor, point[i], "CORRECT");
             } else {
                 printTest(color, correctColor, point[i], "INCORRECT");
-                System.exit(0);
+                System.exit(-1);
             }
         }
     }
 
-    static double readDouble(String name) {
+    private static boolean checkResult(SimpleColor color, SimpleColor correctColor) {
+        return color == correctColor;
+    }
+
+    private static double readDouble(String name) {
         Scanner scanner = new Scanner(System.in);
         System.out.printf("Enter coordinate %s ", name);
         return scanner.nextDouble();
     }
 
-    static void printTest(SimpleColor color, SimpleColor correctColor, Point point, String result) {
+    private static void printTest(SimpleColor color, SimpleColor correctColor, Point point, String result) {
         System.out.printf("x = %1$.1f; y = %2$.1f is point in " + color + "\nCorrect color --> " + correctColor + "" +
                 "\nResult: " + result + "\n", point.x, point.y);
         System.out.println("-------------------");
     }
 
-    static void printColorForPoint(Point point, SimpleColor color) {
+    private static void printColorForPoint(Point point, SimpleColor color) {
         System.out.printf("x = %1$.1f; y = %2$.1f is point in " + color + "\n", point.x, point.y);
     }
 }

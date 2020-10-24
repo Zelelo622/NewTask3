@@ -5,13 +5,13 @@ public class Parabola {
     public double b;
     public double c;
 
-    Parabola(double a, double b, double c) {
+    public Parabola(double a, double b, double c) {
         this.a = a;
         this.b = b;
         this.c = c;
     }
 
-    boolean isPointInside(double x, double y) {
+    public boolean isPointInside(double x, double y) {
         return y > a * Math.pow(x, 2) + b * x + c;
     }
 }
