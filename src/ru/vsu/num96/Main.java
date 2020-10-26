@@ -13,7 +13,7 @@ public class Main {
                 new Parabola(1.0 / 8, -3.0 / 4, 25.0 / 8)
         );
 
-        testPoints(picture);
+        finishProgramToFailedTest(testPoints(picture));
 
         double x = readDouble("x --> ");
         double y = readDouble("y --> ");
@@ -24,27 +24,32 @@ public class Main {
         printColorForPoint(point, color);
     }
 
-    private static void testPoints(Picture picture) {
+    private static boolean testPoints(Picture picture) {
         Point[] point = {new Point(-1, 2), new Point(3, 3), new Point(5, 5),
                 new Point(-8, 6), new Point(0, -6), new Point(5, -5)};
         SimpleColor[] correctResults = {SimpleColor.GREEN, SimpleColor.YELLOW, SimpleColor.ORANGE, SimpleColor.WHITE,
                 SimpleColor.GRAY, SimpleColor.BLUE};
 
+        boolean result = true;
         for (int i = 0; i < point.length; i++) {
             SimpleColor color = picture.getColor(point[i]);
             SimpleColor correctColor = correctResults[i];
 
-            if (checkResult(color, correctColor)) {
-                printTest(color, correctColor, point[i], "CORRECT");
-            } else {
+            if (color != correctColor) {
                 printTest(color, correctColor, point[i], "INCORRECT");
-                System.exit(-1);
+                result = false;
+            } else {
+                printTest(color, correctColor, point[i], "CORRECT");
             }
         }
+        return result;
     }
 
-    private static boolean checkResult(SimpleColor color, SimpleColor correctColor) {
-        return color == correctColor;
+    private static void finishProgramToFailedTest(boolean result) {
+        if (!result) {
+            System.out.println("The tests did not work correctly.");
+            System.exit(-1);
+        }
     }
 
     private static double readDouble(String name) {
