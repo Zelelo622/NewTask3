@@ -9,7 +9,7 @@ public class Line {
         this.b = b;
     }
 
-    public boolean isPointInside(double x, double y) {
-        return y > k * x + b;
+    public boolean isPointInside(Point point) {
+        return point.getY() > k * point.getX() + b;
     }
 }

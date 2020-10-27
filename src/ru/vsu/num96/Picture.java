@@ -16,48 +16,46 @@ public class Picture {
     }
 
     public SimpleColor getColor(Point point) {
-        double x = point.x;
-        double y = point.y;
-        
-        if (circle.isPointInside(x, y) && line.isPointInside(x, y) && parabola1.isPointInside(x, y) &&
-                parabola2.isPointInside(x, y) && parabola3.isPointInside(x, y)) {
+
+        if (circle.isPointInside(point) && line.isPointInside(point) && parabola1.isPointInside(point) &&
+                parabola2.isPointInside(point) && parabola3.isPointInside(point)) {
             return SimpleColor.GRAY;
         }
-        if (circle.isPointInside(x, y) && line.isPointInside(x, y) && parabola2.isPointInside(x, y) &&
-                parabola1.isPointInside(x, y)) {
+        if (circle.isPointInside(point) && line.isPointInside(point) && parabola2.isPointInside(point) &&
+                parabola1.isPointInside(point)) {
             return SimpleColor.GREEN;
         }
-        if (circle.isPointInside(x, y) && parabola2.isPointInside(x, y) && line.isPointInside(x, y)) {
+        if (circle.isPointInside(point) && parabola2.isPointInside(point) && line.isPointInside(point)) {
             return SimpleColor.ORANGE;
         }
-        if (circle.isPointInside(x, y) && line.isPointInside(x, y) && parabola1.isPointInside(x, y)) {
+        if (circle.isPointInside(point) && line.isPointInside(point) && parabola1.isPointInside(point)) {
             return SimpleColor.GRAY;
         }
-        if (circle.isPointInside(x, y) && line.isPointInside(x, y)) {
+        if (circle.isPointInside(point) && line.isPointInside(point)) {
             return SimpleColor.BLUE;
         }
-        if (parabola2.isPointInside(x, y) && circle.isPointInside(x, y)) {
+        if (parabola2.isPointInside(point) && circle.isPointInside(point)) {
             return SimpleColor.GRAY;
         }
-        if (circle.isPointInside(x, y)) {
+        if (circle.isPointInside(point)) {
             return SimpleColor.GREEN;
         }
-        if (parabola3.isPointInside(x, y) && parabola1.isPointInside(x, y)) {
+        if (parabola3.isPointInside(point) && parabola1.isPointInside(point)) {
             return SimpleColor.ORANGE;
         }
-        if (parabola1.isPointInside(x, y) && x > 3) {
+        if (parabola1.isPointInside(point) && point.getX() > 3) {
             return SimpleColor.ORANGE;
         }
-        if (parabola3.isPointInside(x, y)) {
+        if (parabola3.isPointInside(point)) {
             return SimpleColor.YELLOW;
         }
-        if (line.isPointInside(x, y) && !parabola1.isPointInside(x, y)) {
+        if (line.isPointInside(point) && !parabola1.isPointInside(point)) {
             return SimpleColor.ORANGE;
         }
-        if (!line.isPointInside(x, y) && !parabola2.isPointInside(x, y)) {
+        if (!line.isPointInside(point) && !parabola2.isPointInside(point)) {
             return SimpleColor.GRAY;
         }
-        if (parabola2.isPointInside(x, y) && x < 0) {
+        if (parabola2.isPointInside(point) && point.getX() < 0) {
             return SimpleColor.WHITE;
         }
         return SimpleColor.BLUE;

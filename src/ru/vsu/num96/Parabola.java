@@ -11,7 +11,7 @@ public class Parabola {
         this.c = c;
     }
 
-    public boolean isPointInside(double x, double y) {
-        return y > a * Math.pow(x, 2) + b * x + c;
+    public boolean isPointInside(Point point) {
+        return point.getY() > a * Math.pow(point.getX(), 2) + b * point.getX() + c;
     }
 }

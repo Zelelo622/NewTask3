@@ -12,7 +12,7 @@ public class Circle {
         this.r = r;
     }
 
-    public boolean isPointInside(double x, double y) {
-        return Math.pow(r, 2) > Math.pow((x - a), 2) + Math.pow((y - b), 2);
+    public boolean isPointInside(Point point) {
+        return Math.pow(r, 2) > Math.pow((point.getX() - a), 2) + Math.pow((point.getY() - b), 2);
     }
 }
